@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisplayCustomerReservationsController">
+   <children>
+      <TableView fx:id="table" layoutX="40.0" layoutY="78.0" onMouseClicked="#tableClicked" prefHeight="257.0" prefWidth="791.0">
+         <columns>
+            <TableColumn fx:id="resCol" editable="false" prefWidth="145.0" text="Reservation#" />
+            <TableColumn fx:id="fIDCol" editable="false" prefWidth="126.0" text="Flight ID" />
+            <TableColumn fx:id="fromCol" editable="false" prefWidth="116.0" text="From City" />
+            <TableColumn fx:id="toCol" editable="false" prefWidth="122.0" text="To City" />
+            <TableColumn fx:id="dateCol" editable="false" prefWidth="110.0" text="Date" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="103.0" text="Time" />
+            <TableColumn fx:id="seatCol" editable="false" prefWidth="68.0" text="Seat" />
+         </columns>
+      </TableView>
+      <Label layoutX="40.0" layoutY="27.0" text="Reservations">
+         <font>
+            <Font name="Comic Sans MS" size="27.0" />
+         </font>
+      </Label>
+      <Button layoutX="368.0" layoutY="353.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="135.0" text="Main Menu" />
+   </children>
+</AnchorPane>
