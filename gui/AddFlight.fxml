@@ -6,50 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddFlightController">
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="600.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddFlightController">
    <children>
-      <Label layoutX="230.0" layoutY="26.0" text="Add Flight">
+      <Label layoutX="54.0" layoutY="29.0" text="Add Flight">
          <font>
             <Font name="American Typewriter" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="134.0" layoutY="116.0" text="Flight ID">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="fIDT" layoutX="226.0" layoutY="111.0" prefHeight="33.0" prefWidth="197.0" />
-      <Label layoutX="134.0" layoutY="177.0" text="From">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="fromT" layoutX="226.0" layoutY="172.0" prefHeight="33.0" prefWidth="197.0" />
-      <Label layoutX="134.0" layoutY="242.0" text="To">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="toT" layoutX="226.0" layoutY="237.0" prefHeight="33.0" prefWidth="197.0" />
-      <Label layoutX="134.0" layoutY="307.0" text="Date">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="dateT" layoutX="226.0" layoutY="302.0" prefHeight="33.0" prefWidth="197.0" />
-      <Label layoutX="134.0" layoutY="371.0" text="Time">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="timeT" layoutX="226.0" layoutY="366.0" prefHeight="33.0" prefWidth="197.0" />
-      <Label layoutX="134.0" layoutY="440.0" text="Capacity">
-         <font>
-            <Font name="American Typewriter" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="capacityT" layoutX="226.0" layoutY="435.0" prefHeight="33.0" prefWidth="197.0" />
-      <Button layoutX="473.0" layoutY="507.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="78.0" text="Save" />
-      <Button layoutX="310.0" layoutY="507.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="113.0" text="Main Menu" />
+      <TextField fx:id="fIDT" layoutX="54.0" layoutY="111.0" prefHeight="33.0" prefWidth="197.0" promptText="Flight Id" />
+      <TextField fx:id="fromT" layoutX="54.0" layoutY="179.0" prefHeight="33.0" prefWidth="197.0" promptText="From" />
+      <TextField fx:id="toT" layoutX="325.0" layoutY="179.0" prefHeight="33.0" prefWidth="197.0" promptText="To" />
+      <TextField fx:id="dateT" layoutX="325.0" layoutY="111.0" prefHeight="33.0" prefWidth="197.0" promptText="Date" />
+      <TextField fx:id="timeT" layoutX="54.0" layoutY="250.0" prefHeight="33.0" prefWidth="197.0" promptText="Time" />
+      <TextField fx:id="capacityT" layoutX="325.0" layoutY="250.0" prefHeight="33.0" prefWidth="197.0" promptText="Capacity" />
+      <Button layoutX="356.0" layoutY="362.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="78.0" text="Save" />
+      <Button layoutX="96.0" layoutY="362.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="113.0" text="Main Menu" />
    </children>
 </AnchorPane>

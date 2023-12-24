@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateFlightController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateFlightController">
    <children>
       <Label layoutX="230.0" layoutY="26.0" text="Update Flight">
          <font>

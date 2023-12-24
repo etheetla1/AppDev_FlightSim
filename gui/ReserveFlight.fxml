@@ -5,13 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="846.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controllers.ReserveFlightController">
+<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="846.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReserveFlightController">
    <children>
-      <TableView fx:id="table" layoutX="90.0" layoutY="94.0" onMouseClicked="#tableClicked" prefHeight="257.0" prefWidth="666.0">
+      <TableView fx:id="table" layoutX="90.0" layoutY="161.0" onMouseClicked="#tableClicked" prefHeight="190.0" prefWidth="666.0">
          <columns>
             <TableColumn fx:id="id" editable="false" prefWidth="75.0" text="Flight ID" />
             <TableColumn fx:id="from" editable="false" prefWidth="75.0" text="From City" />
@@ -27,7 +27,7 @@
             <Font name="American Typewriter" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="70.0" text="Select Flight to reserve">
+      <Label layoutX="83.0" layoutY="130.0" text="Select Flight to reserve">
          <font>
             <Font name="American Typewriter" size="15.0" />
          </font>
@@ -40,5 +40,6 @@
       <ComboBox fx:id="seatC" layoutX="90.0" layoutY="409.0" prefHeight="26.0" prefWidth="234.0" />
       <Button layoutX="251.0" layoutY="461.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="81.0" text="Reserve" />
       <Button layoutX="90.0" layoutY="461.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="127.0" text="Main Menu" />
+      <TextField layoutX="81.0" layoutY="85.0" prefHeight="26.0" prefWidth="677.0" promptText="Search for flights" />
    </children>
 </AnchorPane>

@@ -6,21 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="342.0" prefWidth="487.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controllers.CancelReservationController">
+<AnchorPane id="AnchorPane" prefHeight="342.0" prefWidth="487.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CancelReservationController">
    <children>
-      <Label layoutX="114.0" layoutY="32.0" text="Cancel Reservation">
+      <Label layoutX="27.0" layoutY="33.0" text="Cancel Reservation">
          <font>
             <Font name="American Typewriter" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="122.0" text="Reservation ID">
-         <font>
-            <Font name="American Typewriter" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="resIDT" layoutX="182.0" layoutY="114.0" prefHeight="33.0" prefWidth="181.0" promptText="Enter Reservation ID" />
-      <Button layoutX="308.0" layoutY="163.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Button layoutX="29.0" layoutY="252.0" mnemonicParsing="false" onAction="#mainMenu" text="Main Menu" />
+      <TextField fx:id="resIDT" layoutX="104.0" layoutY="115.0" prefHeight="33.0" prefWidth="181.0" promptText="Enter Reservation ID" />
+      <Button layoutX="104.0" layoutY="171.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Button layoutX="205.0" layoutY="171.0" mnemonicParsing="false" onAction="#mainMenu" text="Main Menu" />
    </children>
 </AnchorPane>

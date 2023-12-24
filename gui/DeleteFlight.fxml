@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="287.0" prefWidth="481.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controllers.DeleteFlightController">
+<AnchorPane id="AnchorPane" prefHeight="287.0" prefWidth="481.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeleteFlightController">
    <children>
       <Label layoutX="155.0" layoutY="23.0" text="Delete Flight">
          <font>
