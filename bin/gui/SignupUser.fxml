@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="756.0" prefWidth="808.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupUserController">
+   <children>
+      <Label layoutX="67.0" layoutY="45.0" text="Signup User">
+         <font>
+            <Font name="American Typewriter" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstNameT" layoutX="67.0" layoutY="98.0" prefHeight="33.0" prefWidth="228.0" promptText="First Name" />
+      <TextField fx:id="lastNameT" layoutX="332.0" layoutY="98.0" prefHeight="33.0" prefWidth="228.0" promptText="Last Name" />
+      <TextField fx:id="addressT" layoutX="67.0" layoutY="158.0" prefHeight="33.0" prefWidth="228.0" promptText="Address" />
+      <TextField fx:id="zipT" layoutX="332.0" layoutY="158.0" prefHeight="33.0" prefWidth="228.0" promptText="Zipcode" />
+      <TextField fx:id="stateT" layoutX="67.0" layoutY="217.0" prefHeight="33.0" prefWidth="228.0" promptText="State" />
+      <TextField fx:id="emailT" layoutX="332.0" layoutY="217.0" prefHeight="33.0" prefWidth="228.0" promptText="Email" />
+      <TextField fx:id="ssnT" layoutX="67.0" layoutY="282.0" prefHeight="33.0" prefWidth="228.0" promptText="SSN" />
+      <TextField fx:id="usernameT" layoutX="332.0" layoutY="282.0" prefHeight="33.0" prefWidth="228.0" promptText="Username" />
+      <TextField fx:id="passwordT" layoutX="67.0" layoutY="345.0" prefHeight="33.0" prefWidth="495.0" promptText="Password" />
+      <TextField fx:id="answerT" layoutX="67.0" layoutY="472.0" prefHeight="33.0" prefWidth="495.0" promptText="Answer" />
+      <Button layoutX="188.0" layoutY="563.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="26.0" prefWidth="83.0" text="Save" />
+      <Button layoutX="67.0" layoutY="563.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="83.0" text="Cancel" />
+      <ComboBox fx:id="securityQuestionC" layoutX="67.0" layoutY="405.0" prefHeight="33.0" prefWidth="495.0" promptText="Security Question" />
+   </children>
+</AnchorPane>

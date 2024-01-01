@@ -50,6 +50,12 @@ public class SignupUserController implements Initializable {
         securityQuestionC.getItems().add("What's your first school name?");
         securityQuestionC.getItems().add("What's your city name where you born?");
         securityQuestionC.getItems().add("What's your favourite Meal?");
+      /*  Customer[] Customers;
+         Customer customer = new Customer("Sahith", "Sangabathula", "aa",
+                    "30005", "GA", "Sahith.Sangabathula@gmail.com", "123456789", "pizza",
+                    "Sahith", "Sangabathula");
+        Customers[0] = customer; */
+        
 
         securityQuestionC.getSelectionModel().select(0);
     }

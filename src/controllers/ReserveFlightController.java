@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -26,6 +27,9 @@ import model.Flight;
 import model.Reservation;
 
 public class ReserveFlightController implements Initializable {
+
+    @FXML
+    private TextField searchFieldT;
 
     @FXML
     private TableView<Flight> table;
@@ -193,6 +197,20 @@ public class ReserveFlightController implements Initializable {
             flight = table.getSelectionModel().getSelectedItem();
             setAvailableSeats();
         }
+    }
+
+    @FXML
+    private void searchFlight(ActionEvent event) {
+        CustomerDatabase customerDatabase = CustomerDatabase.getInstance();
+        Flight f = customerDatabase.searchFlight(searchFieldT.getText());
+        ObservableList<Flight> flights =FXCollections.observableArrayList();
+        flights.add(f);
+        try {
+            table.setItems(flights);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
