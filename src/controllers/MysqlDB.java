@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class MysqlDB {
 
-    private static final String DB_URL = "jdbc:mysql://34.68.205.194:3306/final_project"; // Replace with your database
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/flight_sim"; // Replace with your database
                                                                                           // URL
-    private static final String USERNAME = "side_user";
-    private static final String PASSWORD = "";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Sangabathula1!";
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -29,6 +29,7 @@ public class MysqlDB {
             System.out.println("Failed to connect");
         } else {
             System.out.println("Successful connection");
+            //response.Redirect("Login.fxml");
         }
 
     }
