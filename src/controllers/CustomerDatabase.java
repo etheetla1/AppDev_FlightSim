@@ -13,6 +13,14 @@ import model.Reservation;
 
 public class CustomerDatabase implements CustomerActions {
 
+    static CustomerDatabase customerDatabase;
+    public static CustomerDatabase getInstance() {
+        if(customerDatabase == null) {
+            customerDatabase = new CustomerDatabase();
+        }
+        return customerDatabase;
+    }
+
     @Override
     public void bookFlight(String flightId, String seatNumber, String customerUsername) {
         try (Connection connection = MysqlDB.getConnection()) {
@@ -66,7 +74,39 @@ public class CustomerDatabase implements CustomerActions {
 
         return foundFlight;
     }
+/*    @Override
+    public Flight searchFlight(String flightId, String fromCity) {
+        Flight foundFlight = null;
 
+        try (Connection connection = MysqlDB.getConnection()) {
+            // Prepare the SQL query
+            String sql = "SELECT * FROM Flight WHERE flightId = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                // Set value for the placeholder in the SQL query
+                preparedStatement.setString(1, flightId);
+
+                // Execute the query
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                // Process the result
+                if (resultSet.next()) {
+                    foundFlight = new Flight(
+                            resultSet.getString("flightId"),
+                            resultSet.getString("fromCity"),
+                            resultSet.getString("toCity"),
+                            resultSet.getString("date"),
+                            resultSet.getString("time"),
+                            resultSet.getInt("capacity"),
+                            resultSet.getInt("bookedPassengers"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return foundFlight;
+    }
+*/
     @Override
     public boolean signUp(Customer customer) {
         try (Connection connection = MysqlDB.getConnection()) {

@@ -144,5 +144,22 @@ public class LoginController implements Initializable {
         }
 
     }
+ /*    @FXML
+    private void Hello(ActionEvent event) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/ForgotPassword.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Login");
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        */
 
 }
