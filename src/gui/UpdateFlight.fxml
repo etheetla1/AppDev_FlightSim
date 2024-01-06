@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateFlightController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateFlightController">
    <children>
       <Label layoutX="230.0" layoutY="26.0" text="Update Flight">
          <font>
             <Font name="American Typewriter" size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="fIDT" layoutX="46.0" layoutY="91.0" prefHeight="33.0" prefWidth="197.0" promptText="Enter Flight ID to Search" />
+      <TextField fx:id="fIDT" layoutX="46.0" layoutY="91.0" prefHeight="33.0" prefWidth="197.0" promptText="Flight ID" />
+      <TextField fx:id="rIDT" layoutX="281.0" layoutY="92.0" promptText="Record ID " />
       <TextField fx:id="fromT" layoutX="46.0" layoutY="223.0" prefHeight="33.0" prefWidth="197.0" promptText="From" />
       <TextField fx:id="toT" layoutX="276.0" layoutY="223.0" prefHeight="33.0" prefWidth="197.0" promptText="To" />
       <TextField fx:id="dateT" layoutX="46.0" layoutY="296.0" prefHeight="33.0" prefWidth="197.0" promptText="Date" />
@@ -23,9 +28,10 @@
             <Font name="American Typewriter" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="capacityT" layoutX="46.0" layoutY="393.0" prefHeight="33.0" prefWidth="197.0" promptText="Capcity" />
+      <TextField fx:id="capacityT" layoutX="46.0" layoutY="393.0" prefHeight="33.0" prefWidth="197.0" promptText="Capacity" />
       <Button layoutX="211.0" layoutY="498.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="78.0" text="Save" />
       <Button layoutX="46.0" layoutY="498.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="113.0" text="Main Menu" />
       <Button layoutX="46.0" layoutY="151.0" mnemonicParsing="false" onAction="#searchFlight" prefHeight="26.0" prefWidth="197.0" text="Search" />
+      <Label layoutX="46.0" layoutY="66.0" text="Please enter both Flight ID and Record ID to Search" />
    </children>
 </AnchorPane>

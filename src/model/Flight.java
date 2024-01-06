@@ -9,6 +9,7 @@ public class Flight {
     private String time;
     private int capacity;
     private int bookedPassengers;
+    private int recordId;
 
     public Flight(String flightId, String fromCity, String toCity, String date, String time, int capacity,
             int bookedPassengers) {
@@ -19,6 +20,17 @@ public class Flight {
         this.time = time;
         this.capacity = capacity;
         this.bookedPassengers = bookedPassengers;
+    }
+    public Flight(String flightId, String fromCity, String toCity, String date, String time, int capacity,
+            int bookedPassengers, int recordId) {
+        this.flightId = flightId;
+        this.fromCity = fromCity;
+        this.toCity = toCity;
+        this.date = date;
+        this.time = time;
+        this.capacity = capacity;
+        this.bookedPassengers = bookedPassengers;
+        this.recordId = recordId;
     }
 
     public String getFlightId() {
@@ -76,5 +88,11 @@ public class Flight {
     public void setBookedPassengers(int bookedPassengers) {
         this.bookedPassengers = bookedPassengers;
     }
+    public int getrecordId() {
+        return recordId;
+    }
 
+    public void setrecordId(int recordId) {
+        this.recordId = recordId;
+    }
 }

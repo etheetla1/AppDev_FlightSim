@@ -3,8 +3,11 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -109,9 +112,11 @@ public class ReserveFlightController implements Initializable {
             } else {
 
                 boolean check = false;
-                ArrayList<Reservation> reservations = customerDatabase.reservations(customer.getUsername());
+                //ArrayList<Reservation> reservations = customerDatabase.reservations(customer.getUsername());
+                ArrayList<Reservation> reservations = customerDatabase.reservationsData(customer.getUsername());
                 for (Reservation reservation : reservations) {
-                    if (reservation.getFlightId().equals(flight.getFlightId())
+                 //   if (reservation.getFlightId().equals(flight.getFlightId())
+                 if (reservation.getFlightId().equals(flight.getFlightId()) && (reservation.getrecordId() == flight.getrecordId())
                             && reservation.getCustomerId().equals(customer.getUsername())) {
                         check = true;
                     }
@@ -121,8 +126,9 @@ public class ReserveFlightController implements Initializable {
                     Utils.showError("Error", "User already has booking in this flight");
                 } else {
 
-                    customerDatabase.bookFlight(flight.getFlightId(), seatC.getSelectionModel().getSelectedItem(),
-                            customer.getUsername());
+                    //customerDatabase.bookFlight(flight.getFlightId(), seatC.getSelectionModel().getSelectedItem(),
+                         //   customer.getUsername());
+                    bookFlight(flight.getFlightId(), seatC.getSelectionModel().getSelectedItem(),customer.getUsername(), flight.getrecordId());
                     Utils.showInfo("Success", "Successfully booked flight in " + flight.getFlightId());
                     flight.setBookedPassengers(flight.getBookedPassengers() + 1);
                     adminDatabase.updateFlight(flight);
@@ -138,7 +144,38 @@ public class ReserveFlightController implements Initializable {
         }
 
     }
+    public void bookFlight(String flightId, String seatNumber, String customerUsername,int recordId) {
+        try (Connection connection = MysqlDB.getConnection()) {
+            // Check if the seat is available
+            // If available, reserve the seat
+            String sql = "INSERT INTO ReservationTest (reservationNumber,flightId, customerId, seatNumber, recordId) VALUES (?, ?, ?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, generateRandomReservationNumber());
+                preparedStatement.setString(2, flightId);
+                preparedStatement.setString(3, customerUsername);
+                preparedStatement.setString(4, seatNumber);
+                preparedStatement.setInt(5, recordId);
+                int rowsAffected = preparedStatement.executeUpdate();
 
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+private static String generateRandomReservationNumber() {
+        // Prefix for reservation number
+        String prefix = "RS";
+
+        // Generate a random number between 1 and 99999
+        int randomNumber = new Random().nextInt(99999) + 1;
+
+        // Format the random number as a 5-digit string
+        String formattedNumber = String.format("%05d", randomNumber);
+
+        // Combine the prefix and formatted number
+        return prefix + formattedNumber;
+    }
     private void setAvailableSeats() {
 
         seatC.getItems().clear();
@@ -200,7 +237,7 @@ public class ReserveFlightController implements Initializable {
     }
 
     @FXML
-    private void searchFlight(ActionEvent event) {
+  /*  private void searchFlight(ActionEvent event) {
         CustomerDatabase customerDatabase = CustomerDatabase.getInstance();
         Flight f = customerDatabase.searchFlight(searchFieldT.getText());
         ObservableList<Flight> flights =FXCollections.observableArrayList();
@@ -210,7 +247,47 @@ public class ReserveFlightController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+*/
+    private void searchFlight(ActionEvent event) {
+        ArrayList<Flight> flights = new ArrayList<>();
+        ObservableList<Flight> obFlights =FXCollections.observableArrayList();
+         try (Connection connection = MysqlDB.getConnection()) {
+            // Prepare the SQL query
+           // String sql = "SELECT * FROM Flight";
+          //String sql = "SELECT FT.flightId, fromCity, toCity, date, time, capacity, FD.bookedPassengers FROM flight_sim.flightdestinations FD right OUTER JOIN flight_sim.flighttest FT ON FD.flightId = FT.flightId WHERE FD.flightId = ?";
+           String sql = "SELECT * FROM FlightData WHERE flightId = ?"; 
+           try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, searchFieldT.getText());
+                // Execute the query
+                ResultSet resultSet = preparedStatement.executeQuery();
 
+                // Process the results
+                while (resultSet.next()) {
+                    Flight flight = new Flight(
+                            resultSet.getString("flightId"),
+                            resultSet.getString("fromCity"),
+                            resultSet.getString("toCity"),
+                            resultSet.getString("date"),
+                            resultSet.getString("time"),
+                            resultSet.getInt("capacity"),
+                            resultSet.getInt("bookedPassengers"),
+                            resultSet.getInt("recordId"));
+                    flights.add(flight);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Flight f1 : flights) {
+            obFlights.add(f1);
+        }
+        try {   
+            table.setItems(obFlights);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
 }

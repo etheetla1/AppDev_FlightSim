@@ -43,20 +43,19 @@ public class CustomerDatabase implements CustomerActions {
     }
 
     @Override
-    public Flight searchFlight(String flightId) {
+ /* */   public Flight searchFlight(String flightId) {
         Flight foundFlight = null;
 
         try (Connection connection = MysqlDB.getConnection()) {
             // Prepare the SQL query
             String sql = "SELECT * FROM Flight WHERE flightId = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+           //String sql = "SELECT FT.flightId, fromCity, toCity, date, time, capacity, FD.bookedPassengers FROM flight_sim.flightdestinations FD right OUTER JOIN flight_sim.flighttest FT ON FD.flightId = FT.flightId WHERE FD.flightId = ?";
+           try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 // Set value for the placeholder in the SQL query
                 preparedStatement.setString(1, flightId);
-
                 // Execute the query
                 ResultSet resultSet = preparedStatement.executeQuery();
-
-                // Process the result
+                // Process the results
                 if (resultSet.next()) {
                     foundFlight = new Flight(
                             resultSet.getString("flightId"),
@@ -74,6 +73,38 @@ public class CustomerDatabase implements CustomerActions {
 
         return foundFlight;
     }
+
+    public Flight searchFlight(String flightId, int rID) {
+        Flight foundFlight = null;
+
+        try (Connection connection = MysqlDB.getConnection()) {
+            // Prepare the SQL query
+            String sql = "SELECT * FROM FlightData WHERE flightId = ? AND recordId = ?";
+           //String sql = "SELECT FT.flightId, fromCity, toCity, date, time, capacity, FD.bookedPassengers FROM flight_sim.flightdestinations FD right OUTER JOIN flight_sim.flighttest FT ON FD.flightId = FT.flightId WHERE FD.flightId = ?";
+           try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                // Set value for the placeholder in the SQL query
+                preparedStatement.setString(1, flightId);
+                  preparedStatement.setInt(2, rID);
+                // Execute the query
+                ResultSet resultSet = preparedStatement.executeQuery();
+                // Process the results
+                if (resultSet.next()) {
+                    foundFlight = new Flight(
+                            resultSet.getString("flightId"),
+                            resultSet.getString("fromCity"),
+                            resultSet.getString("toCity"),
+                            resultSet.getString("date"),
+                            resultSet.getString("time"),
+                            resultSet.getInt("capacity"),
+                            resultSet.getInt("bookedPassengers"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return foundFlight;
+    } 
 /*    @Override
     public Flight searchFlight(String flightId, String fromCity) {
         Flight foundFlight = null;
@@ -244,11 +275,52 @@ public class CustomerDatabase implements CustomerActions {
 
     }
 
+    public ArrayList<Reservation> reservationsData (String username) {
+
+        ArrayList<Reservation> reservations = new ArrayList<>();
+
+        try (Connection connection = MysqlDB.getConnection()) {
+            //String sql = "SELECT * FROM Reservation WHERE customerId = ?";
+            String sql = "SELECT * FROM ReservationTest WHERE customerId = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, username);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    System.out.println("jsnakjn");
+                    String reservationNumber = resultSet.getString("reservationNumber");
+                    String flightId = resultSet.getString("flightId");
+                    String seatNumber = resultSet.getString("seatNumber");
+                    int recordId = resultSet.getInt("recordId");
+                    //Reservation reservation = new Reservation(reservationNumber, flightId, username, seatNumber);
+                    Reservation reservation = new Reservation(reservationNumber, flightId, username, seatNumber, recordId);
+                    Flight flight = searchFlight(flightId, recordId);
+                    reservation.setDate(flight.getDate());
+                    reservation.setTime(flight.getTime());
+                    reservation.setFrom(flight.getFromCity());
+                    reservation.setTo(flight.getToCity());
+                    //reservation.setrecordId(recordId);
+                    System.out.println(reservation.toString());
+
+                    reservations.add(reservation);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Here");
+            e.printStackTrace();
+        }
+
+        System.out.println(reservations.size());
+        return reservations;
+
+    }
+
     @Override
     public boolean cancelReservation(String res) {
 
         try (Connection connection = MysqlDB.getConnection()) {
-            String sql = "DELETE FROM Reservation WHERE reservationNumber = ?";
+            //String sql = "DELETE FROM Reservation WHERE reservationNumber = ?";
+            String sql = "DELETE FROM Reservationtest WHERE reservationNumber = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, res);
 

@@ -44,7 +44,7 @@ public class AdminMenuController implements Initializable {
         }
     }
 
-    @FXML
+     @FXML
     private void updateFlight(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/UpdateFlight.fxml"));
@@ -60,6 +60,22 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+  /*  @FXML
+    private void updateFlight(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/DisplayFlights.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Display Flights");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            UpdateFlightController controller = fxmlLoader.getController();
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+*/
     @FXML
     private void deleteFlight(ActionEvent event) {
         try {

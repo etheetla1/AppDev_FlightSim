@@ -10,14 +10,21 @@ public class Reservation {
     private String to;
     private String date;
     private String time;
+    private int recordId;
 
     public Reservation(String reservationNumber, String flightId, String customerId, String seatNumber) {
         this.reservationNumber = reservationNumber;
         this.flightId = flightId;
         this.customerUsername = customerId;
         this.seatNumber = seatNumber;
+    } 
+ public Reservation(String reservationNumber, String flightId, String customerId, String seatNumber, int recordId) {
+        this.reservationNumber = reservationNumber;
+        this.flightId = flightId;
+        this.customerUsername = customerId;
+        this.seatNumber = seatNumber;
+        this.recordId = recordId;
     }
-
     public String getReservationNumber() {
         return reservationNumber;
     }
@@ -82,6 +89,13 @@ public class Reservation {
         this.time = time;
     }
 
+    public int getrecordId() {
+        return recordId;
+    }
+
+    public void setrecordId(int recordId) {
+        this.recordId = recordId;
+    }
     @Override
     public String toString() {
         return "Reservation{" + "reservationNumber=" + reservationNumber + ", flightId=" + flightId

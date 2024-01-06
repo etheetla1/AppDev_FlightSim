@@ -93,10 +93,11 @@ public class DisplayCustomerReservationsController implements Initializable {
         ArrayList<Reservation> reservations;
 
         if (customer == null)
+            //reservations = new AdminDatabase().getReservations();
             reservations = new AdminDatabase().getReservations();
-
         else
-            reservations = customerDatabase.reservations(customer.getUsername());
+            //reservations = customerDatabase.reservations(customer.getUsername());
+            reservations = customerDatabase.reservationsData(customer.getUsername());
 
         ObservableList<Reservation> reservationsOb = FXCollections.observableArrayList();
 
@@ -132,7 +133,7 @@ public class DisplayCustomerReservationsController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/CustomerMenu.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Customer Mneu");
+                stage.setTitle("Customer Menu");
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 CustomerMenuController controller = fxmlLoader.getController();

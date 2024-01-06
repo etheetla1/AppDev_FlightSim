@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="771.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisplayFlightsController">
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="771.0" style="-fx-background-color: #d1d5db;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisplayFlightsController">
    <children>
       <Label layoutX="45.0" layoutY="38.0" text="Flights">
          <font>
@@ -16,6 +20,7 @@
       </Label>
       <TableView fx:id="table" layoutX="53.0" layoutY="94.0" prefHeight="257.0" prefWidth="666.0">
         <columns>
+        <TableColumn fx:id="rid" editable="false" prefWidth="101.0" text="Record ID" />
           <TableColumn fx:id="id" editable="false" prefWidth="75.0" text="Flight ID" />
           <TableColumn fx:id="from" editable="false" prefWidth="75.0" text="From City" />
             <TableColumn fx:id="to" editable="false" prefWidth="131.0" text="To City" />
@@ -26,5 +31,7 @@
         </columns>
       </TableView>
       <Button layoutX="641.0" layoutY="375.0" mnemonicParsing="false" onAction="#mainMenu" text="Main Menu" />
+      <Button layoutX="53.0" layoutY="368.0" mnemonicParsing="false" onAction="#deleteDestination" text="Delete Destination" />
+   <!-- <Button layoutX="215.0" layoutY="368.0" mnemonicParsing="false" onAction="#updateDestination" text="Update Destination" /> -->
    </children>
 </AnchorPane>

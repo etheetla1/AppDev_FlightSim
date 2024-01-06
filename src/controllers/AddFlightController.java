@@ -43,7 +43,7 @@ public class AddFlightController implements Initializable {
 
     /**
      * 
-     * we get the data from textfeilds, make the flight class and save it in the db.
+     * we get the data from textfields, make the flight class and save it in the db.
      * 
      */
 
@@ -53,10 +53,11 @@ public class AddFlightController implements Initializable {
                 || dateT.getText().isEmpty() || timeT.getText().isEmpty() || capacityT.getText().isEmpty()) {
             Utils.showError("Empty Fields", "No field should be empty.");
         } else {
+            int recordId = AdminDatabase.getnewrecordId();
             try {
 
                 Flight f = new Flight(fIDT.getText(), fromT.getText(), toT.getText(), dateT.getText(), timeT.getText(),
-                        Integer.parseInt(capacityT.getText()), 0);
+                        Integer.parseInt(capacityT.getText()), 0, recordId);
                 AdminDatabase.addFlight(f);
                 Utils.showInfo("Success", "Successfully added Flight to database");
                 fIDT.setText("");
@@ -65,6 +66,7 @@ public class AddFlightController implements Initializable {
                 dateT.setText("");
                 timeT.setText("");
                 capacityT.setText("");
+
 
             } catch (Exception e) {
                 Utils.showError("Valid Data", "Please add valid data in respective fields");
@@ -94,5 +96,6 @@ public class AddFlightController implements Initializable {
             System.out.println(ex);
         }
     }
+    
 
 }

@@ -23,11 +23,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Flight;
+import model.Reservation;
 
 public class DisplayFlightsController implements Initializable {
 
     @FXML
     private TableView<Flight> table;
+    @FXML
+    private TableColumn <?, ?> rid;
     @FXML
     private TableColumn<?, ?> id;
     @FXML
@@ -52,7 +55,7 @@ public class DisplayFlightsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         adminDatabase = new AdminDatabase();
-
+        rid.setCellValueFactory(new PropertyValueFactory<>("recordId"));
         id.setCellValueFactory(new PropertyValueFactory<>("flightId"));
         from.setCellValueFactory(new PropertyValueFactory<>("fromCity"));
         to.setCellValueFactory(new PropertyValueFactory<>("toCity"));
@@ -93,7 +96,7 @@ public class DisplayFlightsController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/AdminMenu.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Admin Mneu");
+            stage.setTitle("Admin Menu");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             AdminMenuController controller = fxmlLoader.getController();
@@ -102,5 +105,48 @@ public class DisplayFlightsController implements Initializable {
             System.out.println(ex);
         }
     }
+    @FXML
+    private void deleteDestination (ActionEvent event) {
+        if (table.getSelectionModel().getSelectedIndex() == -1) {
+            Utils.showError("Error", "Please first select a flight destination to delete.");
+        } else {
+            Flight f = table.getSelectionModel().getSelectedItem();
+            adminDatabase.deleteDestination(f.getrecordId());
+                    //customerDatabase.bookFlight(flight.getFlightId(), seatC.getSelectionModel().getSelectedItem(),
+                         //   customer.getUsername());
+                    Utils.showInfo("Success", "Successfully deleted flight destination for " + f.getFlightId());
+                    showData();
+                    table.getSelectionModel().clearSelection();
+                    showData();
+                }
+            }
 
-}
+   /* @FXML
+    private void updateDestination (ActionEvent event) {
+        if (table.getSelectionModel().getSelectedIndex() == -1) {
+            Utils.showError("Error", "Please first select a flight destination to update.");
+        } else {
+         Flight f = table.getSelectionModel().getSelectedItem();
+            int recordId = f.getrecordId();
+           // UpdateFlightController U = new UpdateFlightController(f);
+             try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/UpdateFlight.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Update Flight");
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                UpdateFlightController controller = fxmlLoader.getController();
+                controller.flight = f;
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            } 
+        }
+    }
+*/
+        }
+
+
+  
+
